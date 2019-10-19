@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<!-- 全局配置参数 -->
+	<settings>
+		<!-- 指定使用Log4J作为日志输出 -->
+		<setting name="logImpl" value="LOG4J" />
+		<!-- 让 Mybatis 映射支持驼峰命名法 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<!-- 配置包的别名 -->
+	<typeAliases>
+		<package name="com.cheer.model" />
+	</typeAliases>
+
+	<!-- 环境集合属性对象 -->
+	<environments default="develop">
+		<!-- 环境子属性对象 -->
+		<environment id="develop">
+			<!-- 配置事务管理器 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 配置数据源 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=UTF-8" />
+				<property name="username" value="root" />
+				<property name="password" value="password" />
+			</dataSource>
+		</environment>
+		<!-- 环境子属性对象 -->
+		<environment id="prod">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=UTF-8" />
+				<property name="username" value="root" />
+				<property name="password" value="password" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 映射器 -->
+	<mappers>
+		<mapper resource="com/cheer/mapper/UserMapper.xml" />
+	</mappers>
+</configuration>
+
