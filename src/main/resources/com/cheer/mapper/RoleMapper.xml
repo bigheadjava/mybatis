@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cheer.mapper.RoleMapper">
+	<select id="queryById" resultType="Role">
+		select id, role_name, enale,created_by,created_date from i_role where id =#{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO `i_role` (`role_name`,`enable`,`created_by`,`created_date`) VALUES
+	(#{roleName},#{enable},#{createdBy},#{createdDate, jdbcType=TIMESTAMP})
+	
+		<selectKey keyColumn="id" resultType="Integer" keyProperty="id" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+</mapper> 

@@ -1,4 +1,4 @@
-package com.cheer.mapper;
+package com.cheer.model;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -31,11 +31,18 @@ public class UserMapperTest {
 	@Test
 	public void testSelectAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<User> resultList = sqlSession.selectList("selectAll");
-		for(User user : resultList) {
-			System.out.println(user.toString());
-			System.out.println("------------------------------------------------");
+		try {
+			List<User> resultList = sqlSession.selectList("selectAll");
+			for(User user : resultList) {
+				System.out.println(user.toString());
+				System.out.println("------------------------------------------------");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sqlSession != null){
+				sqlSession.close();
+			}
 		}
-		sqlSession.close();
 	}
 }
