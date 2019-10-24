@@ -32,4 +32,14 @@ public class Privilege {
 		this.privilegeUrl = privilegeUrl;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("----------------------------------------").append("\r\n");
+		sb.append("id: ").append(id).append("\r\n");
+		sb.append("privilegeName: ").append(privilegeName).append("\r\n");
+		sb.append("privilegeUrl: ").append(privilegeUrl).append("\r\n");
+		sb.append("----------------------------------------").append("\r\n");
+		return sb.toString();
+	}
 }

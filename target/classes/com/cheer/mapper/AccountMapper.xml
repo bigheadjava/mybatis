@@ -17,7 +17,7 @@
 		select id,account_name,account_password,email, created_date from i_account where id = #{id}
 	</select>
 	
-	<insert id="insert">
+	<insert id="insert" >
 		INSERT INTO `i_account` (`account_name`,`account_password`,`email`,`created_date`) VALUES
 	(#{name},#{password},#{email},#{createdDate, jdbcType=TIMESTAMP})
 	</insert>
@@ -26,4 +26,26 @@
 		INSERT INTO `i_account` (`account_name`,`account_password`,`email`,`created_date`) VALUES
 	(#{name},#{password},#{email},#{createdDate, jdbcType=TIMESTAMP})
 	</insert>
+	
+	<update id="updateById" >
+		update i_account set account_password = #{password},email= #{email} where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from i_account where id = #{id}
+	</delete>
+	
+	<select id="queryAccountByRole" resultMap="accountMapper">
+		select a.id, a.account_name, a.account_password, a.email, a.created_date 
+		from i_account a join i_account_role ar on a.id = ar.account_id
+			join i_role r on ar.role_id = r.id
+		where a.id = #{accountId} and r.enable = #{enable}
+	</select>
+	
+	<select id="queryAccountByRole2" resultMap="accountMapper">
+		select a.id, a.account_name, a.account_password, a.email, a.created_date 
+		from i_account a join i_account_role ar on a.id = ar.account_id
+			join i_role r on ar.role_id = r.id
+		where a.id = #{account.id} and r.enable = #{role.enable}
+	</select>
 </mapper>
